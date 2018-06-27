@@ -8,10 +8,21 @@ import javax.persistence.Table;
 @Table(name="login")
 public class Login {
 	
+
 	@Id
 	private int oid;
 	private String email;
 	private String password;
+	
+	public Login(){
+		
+	}
+	public Login(int oid, String email, String password) {
+		super();
+		this.oid = oid;
+		this.email = email;
+		this.password = password;
+	}
 	public int getOid() {
 		return oid;
 	}

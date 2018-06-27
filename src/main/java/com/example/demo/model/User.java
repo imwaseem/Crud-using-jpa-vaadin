@@ -8,11 +8,23 @@ import javax.persistence.Table;
 @Table(name="users")
 public class User {
 
+
 	@Id
 	private int oid;
 	private String name;
 	private String phoneNumber;
 	private String address;
+	
+	public User(){
+		
+	}
+	public User(int oid, String name, String phoneNumber, String address) {
+		super();
+		this.oid = oid;
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.address = address;
+	}
 	public int getOid() {
 		return oid;
 	}
