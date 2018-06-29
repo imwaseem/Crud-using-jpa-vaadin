@@ -49,7 +49,12 @@ public class MainUI extends UI {
 	
 	
 	private void AddBookForm(){
-		
+		Button bookMenuButton = new Button("Book");
+		bookMenuButton.addStyleName(ValoTheme.BUTTON_DANGER);
+		Button updateBookButton = new Button("Update Book");
+		Button update = new Button("Update");
+		Button Home = new Button("Home");
+		updateBookButton.addStyleName(ValoTheme.BUTTON_FRIENDLY);
     	Label booksListLabel = new Label("List Of Registered Books");
     	booksListLabel.addStyleNames(ValoTheme.LABEL_COLORED);
 		Label header = new Label("Enter the Data To Add New Books");
@@ -69,14 +74,14 @@ public class MainUI extends UI {
 		deleteBookData.addStyleName(ValoTheme.BUTTON_DANGER);
 		Button booksListButton = new Button("Show All Books");
 		booksListButton.addStyleName(ValoTheme.BUTTON_FRIENDLY);
-		HorizontalLayout horizontalLayout = new HorizontalLayout(addBookData,deleteBookData,booksListButton);
+		HorizontalLayout horizontalLayout = new HorizontalLayout(addBookData,updateBookButton,deleteBookData,booksListButton,Home);
 
 		VerticalLayout studentDataInsertionLayout = new VerticalLayout(header,bookName,bookAuthor,horizontalLayout);
 		studentDataInsertionLayout.setMargin(true);
 		studentDataInsertionLayout.setSpacing(true);
 		
 		setContent(studentDataInsertionLayout);
-		
+	
 		addBookData.addClickListener(new Button.ClickListener() {
 	            public void buttonClick(ClickEvent event) {
 	            Book book = new Book(bookName.getValue(),bookAuthor.getValue());
@@ -90,6 +95,19 @@ public class MainUI extends UI {
 		
             }
 			
+        });
+		Home.addClickListener(new Button.ClickListener() {
+			 public void buttonClick(ClickEvent event) {
+				 menu();
+			
+	    }
+		
+	});
+		bookMenuButton.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+	           AddBookForm(); 
+           
+            }
         });
 		
 		booksListButton.addClickListener(new Button.ClickListener() {
@@ -114,6 +132,18 @@ public class MainUI extends UI {
             }
 			
         });
+		updateBookButton.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+            	studentDataInsertionLayout.removeAllComponents();
+            	studentDataInsertionLayout.addComponents(header,bookId,bookName,bookAuthor,update,bookMenuButton);
+    			booksList.init();
+            	studentDataInsertionLayout.addComponent(new VerticalLayout(booksListLabel, booksList));
+        	
+        
+        	
+        }
+		
+    });
 		deleteBookButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
 	            
@@ -124,10 +154,27 @@ public class MainUI extends UI {
         }
 		
     });
+		update.addClickListener(new Button.ClickListener() {
+	        public void buttonClick(ClickEvent event) {
+
+	        	   Book book = new Book(Integer.parseInt(bookId.getValue()),bookName.getValue(),bookAuthor.getValue());
+
+	        		bookRepository.save(book);
+	        		
+	        		studentDataInsertionLayout.removeAllComponents();
+	        		studentDataInsertionLayout.addComponents(header,bookName,bookAuthor,horizontalLayout);
+	    			booksList.init();
+	            	studentDataInsertionLayout.addComponent(new VerticalLayout(booksListLabel, booksList));
+	      
+	        }});
 	
         
 	}
-	private void AddStudentForm(){
+	private void AddStudentForm()
+	{
+		Button studentMentButton = new Button("Student");
+		studentMentButton.addStyleName(ValoTheme.BUTTON_FRIENDLY);
+		Button Home = new Button("Home");
     	Label studentListLabel = new Label("List Of Registered Students");
 		studentListLabel.addStyleNames(ValoTheme.LABEL_COLORED);
 		Label header = new Label("Enter the Data To Add New Student");
@@ -152,7 +199,7 @@ public class MainUI extends UI {
 		Button update = new Button("Update");
 		
 		updateStudentButton.addStyleName(ValoTheme.BUTTON_FRIENDLY);
-		HorizontalLayout horizontalLayout = new HorizontalLayout(addStudentData,updateStudentButton,deleteStudentData,studentsListButton);
+		HorizontalLayout horizontalLayout = new HorizontalLayout(addStudentData,updateStudentButton,deleteStudentData,studentsListButton,Home);
 
 		VerticalLayout studentDataInsertionLayout = new VerticalLayout(header,studentName,studentAge,studentPhoneNumber,horizontalLayout);
 		studentDataInsertionLayout.setMargin(true);
@@ -173,11 +220,23 @@ public class MainUI extends UI {
             }
 			
         });
+		studentMentButton.addClickListener(new Button.ClickListener() {
+            public void buttonClick(ClickEvent event) {
+	           AddStudentForm(); 
+           
+            }
+        });
+		Home.addClickListener(new Button.ClickListener() {
+			 public void buttonClick(ClickEvent event) {
+				 menu();
+			
+	    }
 		
+	});
 		updateStudentButton.addClickListener(new Button.ClickListener() {
             public void buttonClick(ClickEvent event) {
             	studentDataInsertionLayout.removeAllComponents();
-        		studentDataInsertionLayout.addComponents(header,studentId,studentName,studentAge,studentPhoneNumber,update);
+        		studentDataInsertionLayout.addComponents(header,studentId,studentName,studentAge,studentPhoneNumber,update,studentMentButton);
     			studentList.init();
             	studentDataInsertionLayout.addComponent(new VerticalLayout(studentListLabel, studentList));
       
@@ -239,6 +298,7 @@ public class MainUI extends UI {
 	
         
 	}
+
 	
 	private void menu(){
 		Button studentMentButton = new Button("Student");

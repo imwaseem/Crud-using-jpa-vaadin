@@ -24,7 +24,7 @@ public class Student {
 
 	@Id
 	@Column(name = "oid")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int oid;
 	@Column(name = "name")
 	private String name;
@@ -57,7 +57,7 @@ public class Student {
 	}
 	public Student(int id ,String name ,int age,String phone ) {
 		
-		this.oid =oid;
+		this.oid =id;
 		this.name = name;
 		this.phone = phone;
 		this.age = age;

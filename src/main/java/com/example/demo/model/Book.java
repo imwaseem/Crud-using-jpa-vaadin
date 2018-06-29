@@ -43,9 +43,16 @@ public class Book {
 		this.name = name;
 		this.author = author;
 	}
-	public Book(String name,String author,Student student){
+//	public Book(String name,String author,Student student){
+//		
+//		//this.student = student;
+//		this.name = name;
+//		this.author = author;
+//	}
+		public Book(int oid,String name,String author){
 		
 		//this.student = student;
+		this.oid=oid;	
 		this.name = name;
 		this.author = author;
 	}
