@@ -8,35 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.model.Student;
+import com.example.demo.model.Book;
+import com.example.demo.repositories.BookRepository;
 import com.example.demo.repositories.StudentRepository;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.themes.ValoTheme;
-
 @Component
-public class StudentList extends VerticalLayout {
+public class BookList extends VerticalLayout {
 
-	
 	@Autowired
-	StudentRepository studentRepository;
+	BookRepository bookRepository ;
 	
 	@PostConstruct
 	void  init(){
 		setSpacing(true);
 		
-		 setStudents( studentRepository.findAll());
+		 setBooks( bookRepository.findAll());
 		
 	}
-	
-	
 
-	private void setStudents(List<Student> students) {
+	private void setBooks(List<Book> books) {
 		 
 		removeAllComponents();
-		if(students != null)
-		students.forEach(student->{
-			addComponent(new StudentLayout(student));
+		
+		books.forEach(book->{
+			addComponent(new BookLayout(book));
 		
 		});
 		
