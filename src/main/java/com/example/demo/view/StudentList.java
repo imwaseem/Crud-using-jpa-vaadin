@@ -1,6 +1,7 @@
 package com.example.demo.view;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
@@ -26,6 +27,10 @@ public class StudentList extends VerticalLayout {
 		setSpacing(true);
 		
 		 setStudents( studentRepository.findAll());
+		
+	}
+	public Optional<Student> findStudentById(int id){
+	return studentRepository.findById(id);
 		
 	}
 	

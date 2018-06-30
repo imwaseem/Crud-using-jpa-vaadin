@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,7 @@ public class Student {
 
 	@Id
 	@Column(name = "oid")
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int oid;
 	@Column(name = "name")
 	private String name;
@@ -32,8 +34,10 @@ public class Student {
 	private int age;
 	@Column(name = "phone")
 	private String phone;
-		 @OneToMany
-		 private List<Book> books;
+	 @OneToMany( fetch=FetchType.EAGER,orphanRemoval=false)
+	//@OneToMany
+	//@JoinColumn(name = "student_id")
+	 private List<Book> books = new ArrayList<>();
 	 
 	public Student(){
 		

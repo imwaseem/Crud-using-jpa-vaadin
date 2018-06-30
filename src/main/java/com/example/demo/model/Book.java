@@ -27,17 +27,17 @@ public class Book {
 
     //@ManyToOne(fetch = FetchType.LAZY)
    // @JoinColumn(name = "book_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @ManyToOne
-    @JoinColumn
-    private Student student;
-
-	public Student getStudent() {
-		return student;
-	}
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+   // @OnDelete(action = OnDeleteAction.CASCADE)
+//    @ManyToOne
+//    @JoinColumn
+//    private Student student;
+//
+//	public Student getStudent() {
+//		return student;
+//	}
+//	public void setStudent(Student student) {
+//		this.student = student;
+//	}
 	public Book(String name,String author){
 		
 		this.name = name;
@@ -75,7 +75,7 @@ public class Book {
 		return author;
 	}
 	public void setAuthor(String author) {
-		author = author;
+		this.author = author;
 	}
 	
 }
